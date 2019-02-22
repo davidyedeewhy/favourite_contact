@@ -8,11 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		525B06B92220B2A00086F86C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B06B82220B2A00086F86C /* AppDelegate.swift */; };
-		525B06BB2220B2A00086F86C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B06BA2220B2A00086F86C /* ViewController.swift */; };
-		525B06BE2220B2A00086F86C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525B06BC2220B2A00086F86C /* Main.storyboard */; };
 		525B06C02220B2A20086F86C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 525B06BF2220B2A20086F86C /* Assets.xcassets */; };
 		525B06C32220B2A20086F86C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525B06C12220B2A20086F86C /* LaunchScreen.storyboard */; };
 		525B06CE2220B2A20086F86C /* Favourite_ContactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B06CD2220B2A20086F86C /* Favourite_ContactTests.swift */; };
+		525B06DE2220B5150086F86C /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B06DD2220B5150086F86C /* ContactViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,14 +27,13 @@
 /* Begin PBXFileReference section */
 		525B06B52220B2A00086F86C /* Favourite Contact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Favourite Contact.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		525B06B82220B2A00086F86C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		525B06BA2220B2A00086F86C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		525B06BD2220B2A00086F86C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		525B06BF2220B2A20086F86C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		525B06C22220B2A20086F86C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		525B06C42220B2A20086F86C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		525B06C92220B2A20086F86C /* Favourite ContactTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Favourite ContactTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		525B06CD2220B2A20086F86C /* Favourite_ContactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourite_ContactTests.swift; sourceTree = "<group>"; };
 		525B06CF2220B2A20086F86C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		525B06DD2220B5150086F86C /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,9 +75,8 @@
 		525B06B72220B2A00086F86C /* Favourite Contact */ = {
 			isa = PBXGroup;
 			children = (
+				525B06D82220B4B30086F86C /* Module */,
 				525B06B82220B2A00086F86C /* AppDelegate.swift */,
-				525B06BA2220B2A00086F86C /* ViewController.swift */,
-				525B06BC2220B2A00086F86C /* Main.storyboard */,
 				525B06BF2220B2A20086F86C /* Assets.xcassets */,
 				525B06C12220B2A20086F86C /* LaunchScreen.storyboard */,
 				525B06C42220B2A20086F86C /* Info.plist */,
@@ -94,6 +91,46 @@
 				525B06CF2220B2A20086F86C /* Info.plist */,
 			);
 			path = "Favourite ContactTests";
+			sourceTree = "<group>";
+		};
+		525B06D82220B4B30086F86C /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				525B06D92220B4BC0086F86C /* Contact */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		525B06D92220B4BC0086F86C /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				525B06DC2220B4E00086F86C /* View */,
+				525B06DB2220B4D30086F86C /* Controller */,
+				525B06DA2220B4C90086F86C /* Model */,
+			);
+			path = Contact;
+			sourceTree = "<group>";
+		};
+		525B06DA2220B4C90086F86C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		525B06DB2220B4D30086F86C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				525B06DD2220B5150086F86C /* ContactViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		525B06DC2220B4E00086F86C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,7 +216,6 @@
 			files = (
 				525B06C32220B2A20086F86C /* LaunchScreen.storyboard in Resources */,
 				525B06C02220B2A20086F86C /* Assets.xcassets in Resources */,
-				525B06BE2220B2A00086F86C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,8 +233,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525B06BB2220B2A00086F86C /* ViewController.swift in Sources */,
 				525B06B92220B2A00086F86C /* AppDelegate.swift in Sources */,
+				525B06DE2220B5150086F86C /* ContactViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,14 +257,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		525B06BC2220B2A00086F86C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				525B06BD2220B2A00086F86C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		525B06C12220B2A20086F86C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

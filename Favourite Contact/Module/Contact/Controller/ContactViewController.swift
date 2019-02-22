@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ContactViewController.swift
 //  Favourite Contact
 //
 //  Created by David Ye on 23/2/19.
@@ -8,13 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ContactViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
-
 }
-
