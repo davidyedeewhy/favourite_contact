@@ -12,6 +12,7 @@
 		525B06C32220B2A20086F86C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525B06C12220B2A20086F86C /* LaunchScreen.storyboard */; };
 		525B06CE2220B2A20086F86C /* Favourite_ContactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B06CD2220B2A20086F86C /* Favourite_ContactTests.swift */; };
 		525B06DE2220B5150086F86C /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B06DD2220B5150086F86C /* ContactViewController.swift */; };
+		525B06E02220B7B60086F86C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 525B06DF2220B7B60086F86C /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		525B06CD2220B2A20086F86C /* Favourite_ContactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourite_ContactTests.swift; sourceTree = "<group>"; };
 		525B06CF2220B2A20086F86C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		525B06DD2220B5150086F86C /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		525B06DF2220B7B60086F86C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 		525B06AC2220B2A00086F86C = {
 			isa = PBXGroup;
 			children = (
+				525B06DF2220B7B60086F86C /* README.md */,
 				525B06B72220B2A00086F86C /* Favourite Contact */,
 				525B06CC2220B2A20086F86C /* Favourite ContactTests */,
 				525B06B62220B2A00086F86C /* Products */,
@@ -216,6 +219,7 @@
 			files = (
 				525B06C32220B2A20086F86C /* LaunchScreen.storyboard in Resources */,
 				525B06C02220B2A20086F86C /* Assets.xcassets in Resources */,
+				525B06E02220B7B60086F86C /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +395,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UWY7486YJ7;
 				INFOPLIST_FILE = "Favourite Contact/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -409,6 +414,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UWY7486YJ7;
 				INFOPLIST_FILE = "Favourite Contact/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
