@@ -9,6 +9,8 @@
 import UIKit
 
 class ContactViewController: UIViewController {
+    
+    // MARK: - Variables
 
     var contacts: [Contact]? {
         didSet {
@@ -26,10 +28,46 @@ class ContactViewController: UIViewController {
     var collectionView: UICollectionView?
     var segment: UISegmentedControl?
 
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
     }
+
+}
+
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate
+
+extension ContactViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return isFavouriteContacts ? contacts?.filter { $0.isFavourite }.count ?? 0 : contacts?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        if let contact = contacts?[indexPath.row] {
+            (cell as? ContactCollectionViewCell)?.imageView?.image = UIImage(named: contact.gender.imageName)
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if !isFavouriteContacts, let isFavourite = contacts?[indexPath.row].isFavourite {
+            contacts?[indexPath.row].isFavourite = !isFavourite
+            collectionView.reloadItems(at: [indexPath])
+        }
+    }
+}
+
+// MARK: - functions
+
+extension ContactViewController {
     
     private func configureView() {
         let flowLayout = UICollectionViewFlowLayout()
@@ -60,31 +98,5 @@ class ContactViewController: UIViewController {
     @IBAction func didSelectSegment(_ sender: UISegmentedControl) {
         isFavouriteContacts = sender.selectedSegmentIndex == 1
     }
-
-}
-
-extension ContactViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isFavouriteContacts ? contacts?.filter { $0.isFavourite }.count ?? 0 : contacts?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        if let contact = contacts?[indexPath.row] {
-            (cell as? ContactCollectionViewCell)?.imageView?.image = UIImage(named: contact.gender.imageName)
-        }
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if !isFavouriteContacts, let isFavourite = contacts?[indexPath.row].isFavourite {
-            contacts?[indexPath.row].isFavourite = !isFavourite
-            collectionView.reloadItems(at: [indexPath])
-        }
-    }
 }
