@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Contact: Decodable {
+struct Contact: Decodable, Equatable {
     let id: Int
     let firstName: String
     let lastName: String
@@ -23,6 +23,11 @@ struct Contact: Decodable {
         case email
         case gender
     }
+    
+    public static func == (lhs: Contact, rhs: Contact) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
 }
 
 enum Gender: String, Decodable {
@@ -37,4 +42,13 @@ enum Gender: String, Decodable {
             return "female"
         }
     }
+}
+
+extension Collection {
+    
+    subscript(contact: Contact) -> Int? {
+        guard let contacts = self as? [Contact] else { return nil }
+        return contacts.enumerated().first { $1 == contact }?.offset
+    }
+    
 }
