@@ -14,6 +14,7 @@ struct Contact: Decodable {
     let lastName: String
     let email: String
     let gender: Gender
+    var isFavourite: Bool = false
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -27,4 +28,13 @@ struct Contact: Decodable {
 enum Gender: String, Decodable {
     case male = "Male"
     case female = "Female"
+    
+    var imageName: String {
+        switch self {
+        case .male:
+            return "male"
+        case .female:
+            return "female"
+        }
+    }
 }
