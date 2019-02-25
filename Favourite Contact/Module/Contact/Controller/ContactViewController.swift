@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactViewController: UIViewController {
+class ContactViewController: UIViewController, Requestable {
     
     // MARK: - Variables
 
@@ -19,7 +19,6 @@ class ContactViewController: UIViewController {
             }
         }
     }
-    
     var isFavouriteContacts: Bool = false {
         didSet {
             self.collectionView?.reloadData()
@@ -36,6 +35,14 @@ class ContactViewController: UIViewController {
         configureView()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView?.collectionViewLayout.invalidateLayout()
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionView?.collectionViewLayout.invalidateLayout()
+    }
 }
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
@@ -74,11 +81,12 @@ extension ContactViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        collectionViewLayout.invalidateLayout()
         switch UIDevice.current.orientation {
         case .portrait:
             return CGSize(width: view.frame.width - 40, height: (view.frame.width - 40) / 2)
         default:
-            return CGSize(width: (view.frame.width - 40) / 2.5, height: 200)
+            return CGSize(width: (view.frame.width - 40) / 2, height: (view.frame.width - 40) / 4)
         }
     }
     
@@ -91,7 +99,14 @@ extension ContactViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         guard let contacts = contacts,
             (isFavouriteContacts ? contacts.filter { $0.isFavourite }.count : contacts.count) > 20 else { return CGSize(width: view.frame.size.width, height: 0) }
-        return CGSize(width: view.frame.size.width, height: 50)
+        return CGSize(width: view.frame.size.width, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 20.0,
+                            left: 20.0,
+                            bottom: 20.0,
+                            right: 20.0)
     }
 }
 
@@ -100,9 +115,10 @@ extension ContactViewController: UINavigationBarDelegate {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: { _ in
             self.collectionView?.collectionViewLayout.invalidateLayout()
+            self.collectionView?.reloadData()
         }, completion: nil)
     }
-    
+
 }
 
 // MARK: - functions
@@ -121,10 +137,9 @@ extension ContactViewController {
         if let collectionView = collectionView {
             view.addSubview(collectionView)
         }
-        let requestManager = RequestManager()
         if let url = URL(string: "https://gist.githubusercontent.com/pokeytc/e8c52af014cf80bc1b217103bbe7e9e4/raw/4bc01478836ad7f1fb840f5e5a3c24ea654422f7/contacts.json") {
-            requestManager.request(url, success: { contacts in
-                self.contacts = contacts
+            request(url, success: { contacts in
+                self.contacts = contacts.sorted()
             }) { error in
                 
             }
@@ -133,6 +148,7 @@ extension ContactViewController {
         segment?.selectedSegmentIndex = 0
         segment?.addTarget(self, action: #selector(didSelectSegment), for: .valueChanged)
         navigationItem.titleView = segment
+        collectionView?.backgroundColor = UIColor(red: 200 / 255.0, green: 226 / 355.0, blue: 243 / 255.0, alpha: 1.0)
     }
     
     @IBAction func didSelectSegment(_ sender: UISegmentedControl) {

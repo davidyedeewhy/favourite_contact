@@ -1,5 +1,5 @@
 //
-//  RequestManager.swift
+//  Requestable.swift
 //  Favourite Contact
 //
 //  Created by David Ye on 23/2/19.
@@ -8,7 +8,9 @@
 
 import Foundation
 
-class RequestManager {
+protocol Requestable {}
+
+extension Requestable {
     func request(_ url: URL, success: @escaping ([Contact]) -> Void, failure: @escaping (Error?) -> Void) {
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { (data, response, error) in

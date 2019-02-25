@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct Contact: Decodable, Equatable {
+struct Contact: Decodable, Equatable, Comparable {
+    
     let id: Int
     let firstName: String
     let lastName: String
@@ -28,6 +29,9 @@ struct Contact: Decodable, Equatable {
         return lhs.id == rhs.id
     }
     
+    static func < (lhs: Contact, rhs: Contact) -> Bool {
+        return lhs.firstName < rhs.firstName
+    }
 }
 
 enum Gender: String, Decodable {

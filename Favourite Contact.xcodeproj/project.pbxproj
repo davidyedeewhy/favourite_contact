@@ -16,7 +16,7 @@
 		525B06E02220B7B60086F86C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 525B06DF2220B7B60086F86C /* README.md */; };
 		525B06E22220B9CD0086F86C /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B06E12220B9CD0086F86C /* Contact.swift */; };
 		525B06E42220BDD70086F86C /* contacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 525B06E32220BDD70086F86C /* contacts.json */; };
-		525B06E62220C6E60086F86C /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B06E52220C6E60086F86C /* RequestManager.swift */; };
+		525B06E62220C6E60086F86C /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B06E52220C6E60086F86C /* Requestable.swift */; };
 		525B06E82220E32B0086F86C /* ContactCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B06E72220E32B0086F86C /* ContactCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +44,7 @@
 		525B06DF2220B7B60086F86C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		525B06E12220B9CD0086F86C /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		525B06E32220BDD70086F86C /* contacts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = contacts.json; sourceTree = "<group>"; };
-		525B06E52220C6E60086F86C /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		525B06E52220C6E60086F86C /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
 		525B06E72220E32B0086F86C /* ContactCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				525B06E12220B9CD0086F86C /* Contact.swift */,
-				525B06E52220C6E60086F86C /* RequestManager.swift */,
+				525B06E52220C6E60086F86C /* Requestable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -258,7 +258,7 @@
 				5254BB1F222144BF00F4EBF5 /* ContactCollectionReusableView.swift in Sources */,
 				525B06B92220B2A00086F86C /* AppDelegate.swift in Sources */,
 				525B06DE2220B5150086F86C /* ContactViewController.swift in Sources */,
-				525B06E62220C6E60086F86C /* RequestManager.swift in Sources */,
+				525B06E62220C6E60086F86C /* Requestable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
