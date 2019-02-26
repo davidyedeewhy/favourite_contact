@@ -26,7 +26,10 @@ class ContactViewController: UIViewController, Requestable {
     }
     var collectionView: UICollectionView?
     var segment: UISegmentedControl?
-    private var showNumbers = 20
+    private var numbersOfPerPage = 20
+    private let cellIdentifier = "cell"
+    private let footerIdentifier = "headerCell"
+    private let urlString = "https://gist.githubusercontent.com/pokeytc/e8c52af014cf80bc1b217103bbe7e9e4/raw/4bc01478836ad7f1fb840f5e5a3c24ea654422f7/contacts.json"
 
     // MARK: - View Life Cycle
     
@@ -54,11 +57,11 @@ extension ContactViewController: UICollectionViewDataSource, UICollectionViewDel
         let contactsNumber = isFavouriteContacts
             ? contacts.filter { $0.isFavourite }.count
             : contacts.count
-        return min(showNumbers, contactsNumber)
+        return min(numbersOfPerPage, contactsNumber)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
         let filteredContacts = isFavouriteContacts ? contacts?.filter { $0.isFavourite } : contacts
         if let contact = filteredContacts?[indexPath.row],
             let contactCell = cell as? ContactCollectionViewCell
@@ -91,15 +94,15 @@ extension ContactViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let sectionFooter = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath)
+        let sectionFooter = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerIdentifier, for: indexPath)
         (sectionFooter as? ContactCollectionReusableView)?.button?.addTarget(self, action: #selector(didTapShowMore(_:)), for: .touchUpInside)
         return sectionFooter
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         guard let contacts = contacts,
-            (isFavouriteContacts ? contacts.filter { $0.isFavourite }.count : contacts.count) > 20 else { return CGSize(width: view.frame.size.width, height: 0) }
-        return CGSize(width: view.frame.size.width, height: 100)
+            (isFavouriteContacts ? contacts.filter { $0.isFavourite }.count : contacts.count) > numbersOfPerPage else { return CGSize(width: view.frame.size.width, height: 0) }
+        return CGSize(width: view.frame.size.width, height: 80)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -108,17 +111,6 @@ extension ContactViewController: UICollectionViewDataSource, UICollectionViewDel
                             bottom: 20.0,
                             right: 20.0)
     }
-}
-
-extension ContactViewController: UINavigationBarDelegate {
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animate(alongsideTransition: { _ in
-            self.collectionView?.collectionViewLayout.invalidateLayout()
-            self.collectionView?.reloadData()
-        }, completion: nil)
-    }
-
 }
 
 // MARK: - functions
@@ -132,12 +124,12 @@ extension ContactViewController {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: flowLayout)
         collectionView?.dataSource = self
         collectionView?.delegate = self
-        collectionView?.register(ContactCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        collectionView?.register(ContactCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "headerCell")
+        collectionView?.register(ContactCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        collectionView?.register(ContactCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerIdentifier)
         if let collectionView = collectionView {
             view.addSubview(collectionView)
         }
-        if let url = URL(string: "https://gist.githubusercontent.com/pokeytc/e8c52af014cf80bc1b217103bbe7e9e4/raw/4bc01478836ad7f1fb840f5e5a3c24ea654422f7/contacts.json") {
+        if let url = URL(string: urlString) {
             request(url, success: { contacts in
                 self.contacts = contacts.sorted()
             }) { error in
@@ -169,7 +161,7 @@ extension ContactViewController {
     }
     
     @IBAction func didTapShowMore(_ sender: UIButton) {
-        showNumbers += 20
+        numbersOfPerPage += 20
         collectionView?.reloadData()
         if let number = collectionView?.numberOfItems(inSection: 0) {
             collectionView?.scrollToItem(at: IndexPath(row: number - 1, section: 0), at: .bottom, animated: true)
